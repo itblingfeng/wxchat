@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>SpringBoot实现广播式WebSocket</title>
+
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<noscript><h2 style="color:#ff0000">抱歉,您的浏览器不支持改功能!</h2></noscript>
+<div>
+    <div>
+        <button id="connect" onclick="connect()">连接</button>
+        <button id="send" onclick="send();">发送</button>
+</div>
+
+</div>
+</body>
+<script type="text/javascript">
+    var socket;
+    function connect() {
+       var id = '1000';
+       var to = '2000';
+       socket = new WebSocket("ws://localhost:8080/websocket/3000/3000");
+      socket.onopen = function (ev) {
+          console.log("连接");
+      }
+        socket.onmessage = function (ev) {
+            alert( ev.data)
+        }
+   }
+   function send() {
+       socket.send("hello");
+   }
+
+</script>
+</html>
